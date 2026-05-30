@@ -5,10 +5,9 @@ import com.toDolist.apitest.Dto.FuncionarioReqDto;
 import com.toDolist.apitest.Dto.FuncionarioResDto;
 import com.toDolist.apitest.Model.FuncionarioModel;
 import com.toDolist.apitest.Repository.FuncionarioRepository;
-import jakarta.validation.Valid;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class FunctionaryService {
         this.fRepository = fRepository;
 
     }
-    public FuncionarioModel salvar(@Valid @RequestBody FuncionarioReqDto Fdto){
+    public FuncionarioModel salvar(FuncionarioReqDto Fdto){
         FuncionarioModel fModel = new FuncionarioModel();
         fModel.setNome(Fdto.getNome());
         fModel.setCurso(Fdto.getCurso());

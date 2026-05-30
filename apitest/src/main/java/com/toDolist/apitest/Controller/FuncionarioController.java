@@ -4,12 +4,10 @@ import com.toDolist.apitest.Dto.FuncionarioReqDto;
 import com.toDolist.apitest.Dto.FuncionarioResDto;
 import com.toDolist.apitest.Model.FuncionarioModel;
 import com.toDolist.apitest.Service.FunctionaryService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class FuncionarioController {
         this.funcionarioService = funcionarioService;
     }
     @PostMapping("/postarcandidato")
-    public ResponseEntity<FuncionarioModel> criar(FuncionarioReqDto funcionarioDto) {
+    public ResponseEntity<FuncionarioModel> criar(@Valid @RequestBody FuncionarioReqDto funcionarioDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioService.salvar(funcionarioDto));
     }
     @GetMapping("/listarcandidatos")
