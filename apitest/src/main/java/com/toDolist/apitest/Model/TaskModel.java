@@ -6,6 +6,14 @@ import jakarta.validation.constraints.*;
 @Entity
 public class TaskModel {
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,11 +34,9 @@ public class TaskModel {
         this.descricao = descricao;
     }
 
-    @NotBlank
-    @NotNull
+
     private String nome;
 
-    @NotNull
-    @NotBlank
+
     private String descricao;
 }
