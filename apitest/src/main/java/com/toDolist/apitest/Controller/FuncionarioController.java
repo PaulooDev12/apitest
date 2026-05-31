@@ -15,15 +15,17 @@ import java.util.List;
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
 
-    private FunctionaryService funcionarioService;
+    private final FunctionaryService funcionarioService;
 
     public FuncionarioController(FunctionaryService funcionarioService) {
         this.funcionarioService = funcionarioService;
     }
+
     @PostMapping("/postarcandidato")
     public ResponseEntity<FuncionarioModel> criar(@Valid @RequestBody FuncionarioReqDto funcionarioDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioService.salvar(funcionarioDto));
     }
+
     @GetMapping("/listarcandidatos")
     public ResponseEntity<List<FuncionarioResDto>> listar() {
         return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.listar());

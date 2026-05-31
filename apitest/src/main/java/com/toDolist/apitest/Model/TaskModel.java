@@ -2,7 +2,6 @@ package com.toDolist.apitest.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 @Entity
 public class TaskModel {
 
@@ -34,9 +33,6 @@ public class TaskModel {
         this.descricao = descricao;
     }
 
-
     private String nome;
-
-
     private String descricao;
 }

@@ -19,12 +19,12 @@ public class TaskService {
     }
     public TaskModel save(TaskReqDto dto) {
         TaskModel task = new TaskModel();
-        task.setNome(dto.getNome());
-        task.setDescricao(dto.getDescricao());
+        task.setNome(dto.nome());
+        task.setDescricao(dto.descricao());
         return repository.save(task);
     }
     public TaskModel findById(Long id) {
-        return repository.findById(id).orElseThrow(RuntimeException::new);
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("tarefa nao encontrada"));
     }
 
     public List<TaskResDto> findAll() {
@@ -32,5 +32,14 @@ public class TaskService {
         return tasks.stream()
                 .map(TaskMapper::toDto)
                 .collect(Collectors.toList());
+    }
+    public TaskModel update(Long id, TaskReqDto dto) {
+        TaskModel task = repository.findById(id).orElseThrow(() -> new RuntimeException("tarefa nao encontrada"));
+        task.setNome(dto.nome());
+        task.setDescricao(dto.descricao());
+        return repository.save(task);
+    }
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

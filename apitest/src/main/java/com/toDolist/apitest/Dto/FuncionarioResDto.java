@@ -1,18 +1,4 @@
 package com.toDolist.apitest.Dto;
 
-public class FuncionarioResDto {
-    public FuncionarioResDto(String nome) {
-        this.nome = nome;
-    }
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    private String nome;
-
-
+public record FuncionarioResDto(String nome) {
 }

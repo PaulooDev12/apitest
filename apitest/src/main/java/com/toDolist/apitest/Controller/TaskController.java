@@ -29,4 +29,20 @@ public class TaskController {
     public ResponseEntity<List<TaskResDto>> lista() {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.findAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskModel> get(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskModel> put(@PathVariable Long id, @Valid @RequestBody TaskReqDto dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        taskService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
