@@ -30,19 +30,27 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TaskModel> get(@PathVariable Long id) {
+    @GetMapping("/buscarid:{id}")
+    public ResponseEntity<TaskResDto> get(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.findById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/editar:{id}")
     public ResponseEntity<TaskModel> put(@PathVariable Long id, @Valid @RequestBody TaskReqDto dto) {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.update(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar:{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         taskService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    @GetMapping("/buscarnome:{nome}")
+    public ResponseEntity<List<TaskResDto>> findByNome(@PathVariable String nome) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.findByNomeContaing(nome));
+    }
+    @GetMapping("/buscardescricao:{descricao}")
+    public ResponseEntity<List<TaskResDto>> findByDescricao(@PathVariable String descricao) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.findByDescricaoContaining(descricao));
     }
 }
